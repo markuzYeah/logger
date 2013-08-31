@@ -35,5 +35,6 @@ tmp/
 .old/
 
 app/components/
+app/bower_components/
 dist/
 
