@@ -32,7 +32,7 @@ npm-debug.log
 tmp/
 #server/
 .tmp/
-
+.old/
 
 app/components/
 dist/
