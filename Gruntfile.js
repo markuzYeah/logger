@@ -37,6 +37,26 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+
+
+      //
+      //
+      // 
+
+      jade: {
+        files: ['<%= yeoman.app %>/{,*/}*.jade'],
+        tasks: ['jade:dist']
+
+      },
+      sass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['sass:dist']
+      },
+
+      //
+      //
+      //
+
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
@@ -46,7 +66,7 @@ module.exports = function (grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/}*.{html, jade}',
           '.tmp/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -152,6 +172,52 @@ module.exports = function (grunt) {
         }]
       }
     },
+
+    //
+    // sass task
+    //
+    sass: {
+      options:{
+        trace: true,
+        compass: true,
+        lineNumbers: false
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.{sass,scss}',
+          dest: '.tmp/styles/',
+          ext: '.css'
+        }]
+
+      }
+    },
+
+    //
+    // jade task
+    //
+    jade: {
+      options:{
+        debugInfo: true,
+        pretty: true
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: '{,*/}*.jade',
+          dest: '.tmp/',
+          ext: '.html'
+        }]
+
+      }
+    },
+
+    //
+    //
+    //
+
     // not used since Uglify task does concat,
     // but still available if needed
     /*concat: {
@@ -238,6 +304,7 @@ module.exports = function (grunt) {
     },
     // Put files not handled in other tasks here
     copy: {
+
       dist: {
         files: [{
           expand: true,
@@ -260,6 +327,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
+
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -267,10 +335,25 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
+
+    //
+    // concurrent task
+    //
     concurrent: {
       server: [
         'coffee:dist',
-        'copy:styles'
+
+        //
+        //
+        //
+
+        'jade:dist',
+        'sass:dist',
+       // 'copy:styles'
+
+       //
+       //
+       //
       ],
       test: [
         'coffee',
@@ -278,7 +361,9 @@ module.exports = function (grunt) {
       ],
       dist: [
         'coffee',
-        'copy:styles',
+        'jade',
+        'sass',
+       // 'copy:styles',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -306,13 +391,9 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '<%= yeoman.dist %>/scripts/scripts.js'
-          ]
-        }
-      }
+
+
+      options:{mangle: true}
     }
   });
 

@@ -1,0 +1,54 @@
+@import "normalize";
+/*
+ * compass next
+ */
+@import "compass";
+/*
+ *  fnd next
+ */
+@import "foundation";
+
+// over-writing the default value for this variables
+//$panel-border-style: hidden !important; 
+
+
+
+body {
+    background: #fafafa;
+    //@include background-image(linear-gradient(#eee, $color-aa 30%, $color-aa 70%,  #aab));
+    $color-fade-blue: #9ab;
+    $color-fade-gray: #eee;
+    @include background-image(linear-gradient($color-fade-gray,  $color-fade-blue 40%, $color-fade-blue 60%, $color-fade-gray));
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.hero-unit {
+  // 
+  // my hero unit :)
+  //
+  @extend .column;
+  @extend .panel;
+  margin-top: 1em;
+  //background: inherit;
+  border-style:  none;
+  //@include panel;
+  //@extend .push-5;
+  @extend .small-6;
+  @extend .small-centered;
+  @extend .large-6;
+  @extend .large-centered;
+
+  $color-background: 255;
+  $color-color: 0;
+  background: rgba($color-background, $color-background, $color-background, 0.3);
+  color: rgba($color-color, $color-color, $color-color, 0.8);
+  //border-style: dashed;
+
+  //min-width: 15em;
+  //max-width: 15em;
+  width: 15em;
+
+}
+
