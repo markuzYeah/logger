@@ -1,7 +1,10 @@
 {
   "name": "logger",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "hjs": "0.0.4",
+    "express": "~3.3.8"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",

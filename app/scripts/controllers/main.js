@@ -4,10 +4,11 @@ angular.module('loggerApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
-      'SASS',
+      'sass',
       'Compass',
       'Foundation 4',
       'AngularJS',
-      'Karma'
+      'Karma',
+      'express'
     ];
   });

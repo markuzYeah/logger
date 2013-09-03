@@ -28,6 +28,15 @@ body {
   // 
   // my hero unit :)
   //
+
+  @function black-trans($opacity) {
+     @return rgba(0, 0, 0, $opacity)
+  }
+  
+  @function white-trans($opacity) {
+     @return rgba(255, 255, 255, $opacity)
+  }
+  
   @extend .column;
   @extend .panel;
   margin-top: 1em;
@@ -42,8 +51,10 @@ body {
 
   $color-background: 255;
   $color-color: 0;
-  background: rgba($color-background, $color-background, $color-background, 0.3);
-  color: rgba($color-color, $color-color, $color-color, 0.8);
+  background: white-trans(0.3);
+  color: black-trans(0.9);
+  // background: rgba($color-background, $color-background, $color-background, 0.3);
+  // color: rgba($color-color, $color-color, $color-color, 0.8);
   //border-style: dashed;
 
   //min-width: 15em;
