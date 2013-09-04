@@ -34,7 +34,7 @@ angular.module('loggerApp')
         .innerRadius(0);
 
       var pie = d3.layout.pie()
-        .sort(null)
+        .sort(function(d){ return d.mem; })
         .value(function(d) { return d.mem; });
 
        var g = d3.select(elem + ' g').selectAll('.arc')
@@ -47,11 +47,14 @@ angular.module('loggerApp')
 
        g.append("path")
          .attr("d", arc)
+         .attr('text-anchor', 'middle')
          .style("fill", function(d) { return color(d.data.kind); });
 
        g.append("text")
         .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
         .attr("dy", ".35em")
+        .style("text-anchor", "middle")
+        .text(function(d){ return d.data.kind})
 
 
       //console.log(svg)
