@@ -8,6 +8,8 @@
  */
 @import "foundation";
 
+@import "d3-charts";
+
 // over-writing the default value for this variables
 //$panel-border-style: hidden !important; 
 
@@ -15,13 +17,53 @@
 
 body {
     background: #fafafa;
+    padding-top: 1em;
     //@include background-image(linear-gradient(#eee, $color-aa 30%, $color-aa 70%,  #aab));
-    $color-fade-blue: #9ab;
-    $color-fade-gray: #eee;
-    @include background-image(linear-gradient($color-fade-gray,  $color-fade-blue 40%, $color-fade-blue 60%, $color-fade-gray));
+    $color-blue: #9ab;
+    $color-gray: #eee;
+    @include background-image(linear-gradient($color-gray,  $color-blue 40%, $color-blue 60%, $color-gray));
 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+}
+
+.sys-stat {
+  max-height: 3em;
+  min-height: 3em;
+  padding: 0;
+  //margin: 0.3em;
+  
+}
+
+#memory, #loadavg {
+  display: inline;
+}
+
+#memory svg{
+  //@extend columns;
+  @extend .small-3;
+  @extend .large-3;
+  //display: inline;
+  min-height: 3em;
+
+  //margin-left: 0.5em;
+  //max-width: 2em;
+  //max-height: 2em;
+  //@extend .panel;
+}
+
+#loadavg svg{
+  //@extend columns;
+
+  @extend .small-8;
+  @extend .large-8;
+  min-height: 3em;
+  background-color: #ccc; 
+
+  //max-width: 8em;
+  //max-height: 2em;
+  //@extend .panel;
+
 }
 
 .hero-unit {
@@ -30,35 +72,23 @@ body {
   //
 
   @function black-trans($opacity) {
-     @return rgba(0, 0, 0, $opacity)
+     @return rgba(0, 0, 0, $opacity);
   }
   
   @function white-trans($opacity) {
-     @return rgba(255, 255, 255, $opacity)
+     @return rgba(255, 255, 255, $opacity);
   }
   
   @extend .column;
   @extend .panel;
-  margin-top: 1em;
-  //background: inherit;
-  border-style:  none;
-  //@include panel;
-  //@extend .push-5;
+
   @extend .small-6;
   @extend .small-centered;
   @extend .large-6;
   @extend .large-centered;
 
-  $color-background: 255;
-  $color-color: 0;
   background: white-trans(0.3);
   color: black-trans(0.9);
-  // background: rgba($color-background, $color-background, $color-background, 0.3);
-  // color: rgba($color-color, $color-color, $color-color, 0.8);
-  //border-style: dashed;
-
-  //min-width: 15em;
-  //max-width: 15em;
   width: 15em;
 
 }

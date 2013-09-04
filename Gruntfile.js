@@ -66,7 +66,7 @@ module.exports = function (grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.{html, jade}',
+          '<%= yeoman.app %>/{,*/}*.{html,jade}',
           '.tmp/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
             return [
               lrSnippet,
               mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
+              //mountFolder(connect, yeomanConfig.app)
             ];
           }
         }
@@ -326,14 +326,53 @@ module.exports = function (grunt) {
             'generated/*'
           ]
         }]
+      }
+
+      // styles: {
+      //   expand: true,
+      //   cwd: '<%= yeoman.app %>/styles',
+      //   dest: '.tmp/styles/',
+      //   src: '{,*/}*.css'
+      // },
+
+      // bower: {
+      //   expand: true,
+      //   cwd: '<%= yeoman.app %>/',
+      //   dest: '.tmp/',
+      //   src: 'bower_components/**/*'
+      // },
+
+      // javascript: {
+      //   expand: true,
+      //   cwd: '<%= yeoman.app %>/scripts',
+      //   dest: '.tmp/scripts/',
+      //   src: '{,*/}*.js'
+      // }
+
+    },
+
+    symlink: {
+      bower: {
+        expand: true,
+        cwd: '<%= yeoman.app %>',
+        src: 'bower_components',
+        dest: '.tmp/'
       },
 
-      styles: {
+      css: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+
+      js: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/scripts',
+        dest: '.tmp/scripts/',
+        src: '{,*/}*.js'
       }
+
     },
 
     //
@@ -349,6 +388,14 @@ module.exports = function (grunt) {
 
         'jade:dist',
         'sass:dist',
+        //'copy:javascript',
+        'symlink:js',
+        'symlink:bower',
+        'symlink:css',
+
+        //'copy:bower',
+
+
        // 'copy:styles'
 
        //
@@ -363,7 +410,9 @@ module.exports = function (grunt) {
         'coffee',
         'jade',
         'sass',
-       // 'copy:styles',
+        'symlink:js',
+        'symlink:bower',
+        'symlink:css',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -405,7 +454,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'autoprefixer',
+      //'autoprefixer',
       'connect:livereload',
       //'open',
       'watch'

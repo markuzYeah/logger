@@ -54,15 +54,20 @@ html(lang = "en").no-js
     //script(src='bower_components/angular-sanitize/angular-sanitize.js', type='text/javascript')
     // endbuild 
 
-    // build:js({.tmp,app}) js/ng-etc.js 
+
+    // build:js({.tmp,app}) js/ng-app.js 
     script(src='scripts/app.js', type='text/javascript')
     script(src='scripts/controllers/main.js', type='text/javascript')
-
-
+    script(src='scripts/services/socket.js', type='text/javascript')
+    script(src='scripts/services/d3.js', type='text/javascript')
+    script(src='scripts/services/pie-chart.js', type='text/javascript')
     // endbuild 
 
 
-    // build:js js/zp-fnd.js 
+    // build:js js/io-d3-zp-fnd.js 
+    script(src='scripts/etc/socket.io.js', type='text/javascript')
+    script(src='bower_components/d3/d3.js', type='text/javascript')
+
     // script(src='bower_components/foundation/js/vendor/zepto.js', type='text/javascript')
 
     // script(src='bower_components/foundation/js/foundation/foundation.alerts.js', type='text/javascript')
@@ -84,15 +89,14 @@ html(lang = "en").no-js
 
     // build:js js/main.js 
 
+    // begin hogan stuff
+
     //{{# scripts }}
     //script(src='{{.}}', type='text/javascript')
     //{{/ scripts }}
     
-    // endbuild 
-    // build:js js/jq.js 
-    //script(src='vendors/jquery/jquery.js', type='text/javascript')
-    //script(src='vendors/jquery.validate.js', type='text/javascript')
-    //script(src='vendors/sugar/release/sugar-full.development.js', type='text/javascript')
+    // end hogan stuff
+
     // endbuild 
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
