@@ -32,10 +32,30 @@ body {
   min-height: 3em;
   padding: 0;
   //margin: 0.3em;
-  
 }
 
-#memory, #loadavg {
+.sys-stat-leg {
+  max-height: 1.45em;
+  min-height: 1.45em;
+  padding: 0;
+  //margin: 0.3em;
+}
+
+#memory-leg {
+  @extend .small-3;
+  @extend .large-3;
+  //background-color: #999; 
+  margin-left: 1em;
+}
+
+#loadavg-leg {
+  @extend .small-3;
+  @extend .large-3;
+  //background-color: #999; 
+  margin-left: 3.5em;
+}
+
+#memory, #loadavg, #memory-leg, #loadavg-leg {
   display: inline;
 }
 
@@ -58,7 +78,7 @@ body {
   @extend .small-8;
   @extend .large-8;
   min-height: 3em;
-  background-color: #ccc; 
+  background-color: #999; 
 
   //max-width: 8em;
   //max-height: 2em;

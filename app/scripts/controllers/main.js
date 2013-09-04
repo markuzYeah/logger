@@ -22,14 +22,23 @@ angular.module('loggerApp')
     socket$.on('datum', function(rawData){
       //console.log(rawData)
 
-      var pieData = [
+      var pieDataRand = [
         { 'mem' : rawData.freemem/Math.pow(10, 9) + (Math.random()*10), kind: 'free'},
         { 'mem' : (rawData.totalmem - rawData.freemem)/Math.pow(10, 9) + (Math.random() * 10), kind: 'used'}
       ]
 
+      // console.log('RRRRR', pieDataRand)
+
+      // pieChart$('#memory svg', pieDataRand)
+
+      var pieData = [
+        { 'mem' : rawData.freemem/Math.pow(10, 9), kind: 'free'},
+        { 'mem' : (rawData.totalmem - rawData.freemem)/Math.pow(10, 9), kind: 'used'}
+      ]
+
       console.log('RRRRR', pieData)
 
-      pieChart$('#memory svg', pieData)
+      pieChart$('#memory svg', pieDataRand)
       //console.log('total mem', rawData.totalmem/Math.pow(10, 9))
       //console.log('free mem', rawData.freemem/Math.pow(10, 9))
       //console.log('used mem', (rawData.totalmem - rawData.freemem)/Math.pow(10, 9))
