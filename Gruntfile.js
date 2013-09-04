@@ -1,6 +1,11 @@
 // Generated on 2013-08-31 using generator-angular 0.4.0
 'use strict';
 var LIVERELOAD_PORT = 35730;
+
+var cheerio = require('cheerio');
+var fs = require('fs');
+var path = require('path');
+
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
@@ -15,6 +20,7 @@ var mountFolder = function (connect, dir) {
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
+
 
   // configurable paths
   var yeomanConfig = {
@@ -446,6 +452,33 @@ module.exports = function (grunt) {
     }
   });
 
+  
+  grunt.registerTask('addLR', '', function(){
+  
+    function addLR (index){
+      var $ = cheerio.load(fs.readFileSync(index, {encoding: 'utf8'}));
+
+      var lrTag = '<script type="text/javascript">' +
+          'document.write(\'<script src="http://\' + (location.host ||' +
+          ' \'localhost\').split(\':\')[0] + ' +
+          '\':35729/livereload.js?snipver=1" ' +
+          'type="text/javascript"><\\/script>\')' +
+        '</script>';
+      
+      $('body').append(lrTag);
+
+
+
+      fs.writeFileSync(index, $.html(), {encoding: 'utf8'});
+    }
+
+    
+
+    addLR(path.join(path.join(__dirname, 'server/public'), 'index.html'));
+    return
+  });
+
+
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -456,6 +489,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       //'autoprefixer',
       'connect:livereload',
+      'addLR',
       //'open',
       'watch'
     ]);
