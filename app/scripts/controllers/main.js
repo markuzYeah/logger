@@ -8,13 +8,10 @@ angular.module('loggerApp')
   .controller('MainCtrl', ['$scope', 'socket$', 'd3$', 'pieChart$', function ($scope, socket$, d3$, pieChart$) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
-      'sass',
-      'Compass',
+      'SASS/Compass',
       'Foundation 4',
-      'AngularJS',
-      'Karma',
-      'express',
-      'socket.io',
+      'AngularJS/Karma',
+      'express/socket.io',
       'd3.js'
     ];
 

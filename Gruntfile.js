@@ -473,7 +473,7 @@ module.exports = function (grunt) {
     }
 
     
-
+    console.log('DDDD');
     addLR(path.join(path.join(__dirname, 'server/public'), 'index.html'));
     return
   });
